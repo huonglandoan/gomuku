@@ -5,8 +5,8 @@ GRAY = (180, 180, 180)
 FPS = 90
 MARGIN = 100
 
-black_img = pygame.image.load("assets/char_x.png")
-white_img = pygame.image.load("assets/char_o.png")
+black_img = pygame.image.load("ui/assets/char_x.png")
+white_img = pygame.image.load("ui/assets/char_o.png")
 
 class Button:
     def __init__(self, color, x, y, width, height, text='', hover_color=None, click_color=None):

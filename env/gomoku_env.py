@@ -109,55 +109,6 @@ class GomokuEnv:
             done = False
             return self.state, self.board, reward, done
 
-    def render(self):
-        action_coord = None
-        action_right = None
-        if self.action is not None:
-            if (self.action + 1) % self.board_size == 0:
-                action_right = None
-            else:
-                action_right_x = (self.action + 1) // self.board_size
-                action_right_y = (self.action + 1) % self.board_size
-                action_right = (action_right_x, action_right_y)
-            action_coord_x = self.action // self.board_size
-            action_coord_y = self.action % self.board_size
-            action_coord = (action_coord_x, action_coord_y)
-        if self.board[COLOR][0] == BLACK:
-            board = (self.board[CURRENT] + self.board[OPPONENT] * 2).reshape(
-                self.board_size, self.board_size)
-        else:
-            board = (self.board[CURRENT] * 2 + self.board[OPPONENT]).reshape(
-                self.board_size, self.board_size)
-        count = np.sum(self.board[CURRENT] + self.board[OPPONENT])
-        board_str = '\n   ' + ALPHABET[:self.board_size * 2 - 1] + '\n'
-        for i in range(self.board_size):
-            for j in range(self.board_size):
-                if j == 0:
-                    board_str += '{:2}'.format(i + 1)
-                if board[i][j] == 0:
-                    if (i, j) == action_right:
-                        board_str += '.'
-                    else:
-                        board_str += ' .'
-                if board[i][j] == 1:
-                    if (i, j) == action_coord:
-                        board_str += '(O)'
-                    elif (i, j) == action_right:
-                        board_str += 'O'
-                    else:
-                        board_str += ' O'
-                if board[i][j] == 2:
-                    if (i, j) == action_coord:
-                        board_str += '(X)'
-                    elif (i, j) == action_right:
-                        board_str += 'X'
-                    else:
-                        board_str += ' X'
-                if j == self.board_size - 1:
-                    board_str += '\n'
-        board_str += '  ' + '-' * (self.board_size - 6) + \
-            '  MOVE: {:2.0f}  '.format(count) + '-' * (self.board_size - 6)
-        print(board_str)
 
 
 if __name__ == '__main__':
