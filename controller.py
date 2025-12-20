@@ -2,8 +2,8 @@ import pygame
 import sys
 
 from ui.play_menu import menu_screen, BoardSize_menu
-from ui.board import play_board
-
+from ui.play_pvsp import play_pvp
+from ui.play_pvsm import play_pvsm
 def run_controller():
     pygame.init()
     screen = pygame.display.set_mode((1600, 900))
@@ -19,18 +19,16 @@ def run_controller():
         # --- PvP Mode ---
         if mode == "PvP":
             size = BoardSize_menu(screen, clock)
-            play_board(
+            play_pvp(
                 screen, clock,
-                mode="PvP",
                 board_size=size
             )
 
         # --- PvM Mode ---
         if mode == "PvM":
             size = BoardSize_menu(screen, clock)
-            play_board(
+            play_pvsm(
                 screen, clock,
-                mode="PvM",
                 board_size=size
             )
 

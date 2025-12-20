@@ -58,9 +58,9 @@ def menu_screen(screen, clock):
         screen, clock,
         "Caro Game",
         [
-            ("Play with Friend", "PvP", (0, 200, 0)),      # xanh lá
-            ("Play with Robot", "PvM", (50, 150, 255)),    # xanh dương
-            ("Quit", "Quit", (200, 50, 50))                # đỏ
+            ("Play with Friend", "PvP", (0, 200, 0)),      
+            ("Play with Robot", "PvM", (50, 150, 255)),    
+            ("Quit", "Quit", (200, 50, 50))                
         ]
     )
 
@@ -80,29 +80,3 @@ def BoardSize_menu(screen, clock):
     )
 
 
-# -------------------------------
-#  MENU PvP
-# -------------------------------
-def PvP_menu(screen, clock):
-    return universal_menu(
-        screen, clock,
-        "PvP Settings",
-        [
-            ("Player 1 First", ("X", "O", "P1"), (0, 200, 0)),
-            ("Player 2 First", ("X", "O", "P2"), (50, 150, 255))
-        ]
-    )
-
-
-# -------------------------------
-#  MENU PvM
-# -------------------------------
-def PvM_menu(screen, clock):
-    return universal_menu(
-        screen, clock,
-        "PvM Settings",
-        [
-            ("Player First", ("X", "O", "P1"), (0, 200, 0)),
-            ("Robot First", ("X", "O", "P2"), (50, 150, 255))
-        ]
-    )

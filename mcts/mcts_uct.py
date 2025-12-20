@@ -81,7 +81,7 @@ class MCTS:
                 self.no_legal_move = argwhere(board_fill != 0).flatten()
                 key = hash(self.state.tobytes())
                 # search my tree
-                if key in self.tree:
+                if key in self.tree and self.tree[key].sum() > 0:
                     # selection
                     action = self._selection(key, c_ucb=1)
                     self.action_memory.appendleft(action)

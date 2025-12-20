@@ -67,15 +67,19 @@ class GomokuEnv:
                 self.board_size, self.board_size), self.display)
 
     def _check_win(self, board, display=True):
-        current_grid = np.zeros((5, 5))
-        for row in range(self.board_size - 5 + 1):
-            for col in range(self.board_size - 5 + 1):
-                current_grid = board[row: row + 5, col: col + 5]
+        if self.board_size == 3:
+            win_len = 3
+        else:
+            win_len = 5
+        current_grid = np.zeros((win_len, win_len))
+        for row in range(self.board_size - win_len + 1):
+            for col in range(self.board_size - win_len + 1):
+                current_grid = board[row: row + win_len, col: col + win_len]
                 sum_horizontal = np.sum(current_grid, axis=1)
                 sum_vertical = np.sum(current_grid, axis=0)
                 sum_diagonal_1 = np.sum(current_grid.diagonal())
                 sum_diagonal_2 = np.sum(np.flipud(current_grid).diagonal())
-                if 5 in sum_horizontal or 5 in sum_vertical:
+                if win_len in sum_horizontal or win_len in sum_vertical:
                     done = True
                     color = self.board[COLOR][0]
                     if color == BLACK:
@@ -86,7 +90,7 @@ class GomokuEnv:
                         print('\n#########   {} Win!   #########'.format(
                             COLOR_DICT[color]))
                     return self.state, self.board, reward, done
-                if sum_diagonal_1 == 5 or sum_diagonal_2 == 5:
+                if sum_diagonal_1 == win_len or sum_diagonal_2 == win_len:
                     reward = 1
                     done = True
                     color = self.board[COLOR][0]
