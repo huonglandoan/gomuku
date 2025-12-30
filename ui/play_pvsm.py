@@ -1,7 +1,7 @@
 import pygame
 import time
 from env.gomoku_env import GomokuEnv, CURRENT, OPPONENT, COLOR, BLACK, WHITE
-from mcts.mcts_puct import MCTS
+from mcts.mcts_uct import MCTS
 from ui.board import create_buttons, compute_board_geometry, center_of_cell, W, H, BOARD_COLOR
 from ui.config import black_img, white_img
 
@@ -21,7 +21,7 @@ def play_pvsm(screen, clock, board_size=15):
 
     # ---- ENV + MCTS ----
     env = GomokuEnv(board_size=board_size, n_history=2)
-    mcts = MCTS(board_size, 2, n_simul=2000)
+    mcts = MCTS(board_size, 2, n_simul=1000)
 
     state, board = env.reset()
 

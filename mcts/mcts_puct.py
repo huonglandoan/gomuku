@@ -14,7 +14,7 @@ BLACK = 1
 WHITE = 0
 BOARD_SIZE = 9
 HISTORY = 2
-N_SIMUL = 10000
+N_SIMUL = 2000
 GAME = 5
 
 
@@ -62,7 +62,7 @@ class MCTS:
                 # search my tree
                 if key in self.tree:
                     # selection
-                    action = self._selection(key, c_pucb=5)
+                    action = self._selection(key, c_pucb=1)
                     self.action_memory.appendleft(action)
                     self.key_memory.appendleft(key)
                 else:
